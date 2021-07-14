@@ -6,12 +6,10 @@ const s3 = new AWS.S3();
 
 exports.handler = async event => {
   try {
-    // const email = requestContext.authorizer.jwt.claims.email
     const key = JSON.parse(event.body).key
     let params = {
       Bucket: BUCKET_NAME,
       Key: key,
-      Expires: 3600,
     };
 
     let data = await createSignedUrl(params);
